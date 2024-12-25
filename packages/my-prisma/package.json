@@ -1,0 +1,17 @@
+{
+  "name": "@cc-amqp-exp/prisma",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "license": "MIT",
+  "scripts": {
+    "generate": "npx prisma generate",
+    "postinstall": "yarn run generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.1.0",
+    "prisma": "^6.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}

@@ -1,0 +1,33 @@
+{
+    "extends": "@tsconfig/node22/tsconfig.json",
+    "compilerOptions": {
+        "lib": ["es2023", "es2020", "dom", "es6", "ESNext.AsyncIterable"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+
+        "strictNullChecks": true,
+        "allowUnusedLabels": false,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "allowUnreachableCode": false,
+        "exactOptionalPropertyTypes": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noPropertyAccessFromIndexSignature": false,
+        "noUncheckedIndexedAccess": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "references": [
+        {
+            "path": "./packages/my-shared/",
+            "prepend": true, 
+        },
+        {
+            "path": "./packages/my-prisma/",
+            "prepend": true, 
+        }
+    ]
+}

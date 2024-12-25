@@ -1,0 +1,10 @@
+{
+  "name": "@cc-amqp-exp/shared",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@types/amqplib": "^0.10.6",
+    "amqplib": "^0.10.5"
+  }
+}

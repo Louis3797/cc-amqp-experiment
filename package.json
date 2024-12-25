@@ -1,0 +1,31 @@
+{
+  "name": "cc-amqp-experiment",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "run-all:dev": "concurrently  -n \"ORDER,INVENTORY,TRACKING,PAYMENT\" -c \"blue,green,magenta,cyan\" --kill-others-on-fail \"yarn workspace order-service dev\" \"yarn workspace inventory-service dev\" \"yarn workspace order-tracking-service dev\" \"yarn workspace payment-service dev\"",
+    "run-all:dev2": "concurrently --kill-others-on-fail \"yarn workspace order-service dev2\" \"yarn workspace inventory-service dev2\" \"yarn workspace order-tracking-service dev2\" \"yarn workspace payment-service dev2\"",
+    "run-all:prod": "concurrently --kill-others-on-fail \"yarn workspace order-service start\" \"yarn workspace inventory-service start\" \"yarn workspace order-tracking-service start\" \"yarn workspace payment-service start\"",
+    "gatling": "gatling run --typescript --sources-folder . --simulation ./test"
+  },
+  "dependencies": {
+    "@cc-amqp-exp/shared": "1.0.0",
+    "@gatling.io/core": "^3.13.105",
+    "@gatling.io/http": "^3.13.105"
+  },
+  "devDependencies": {
+    "@gatling.io/cli": "^3.13.105",
+    "@tsconfig/node22": "^22.0.0",
+    "concurrently": "^9.1.0",
+    "prettier": "3.4.2",
+    "ts-node": "^10.9.2"
+  },
+  "prisma": {
+    "schema": "./packages/my-prisma/prisma/schema.prisma"
+  }
+}
