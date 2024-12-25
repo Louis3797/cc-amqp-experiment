@@ -53,7 +53,7 @@ npm-debug.*
 *.orig.*
 web-build/
 cache/
-.env
+
 .docker/
 .apps/api/prisma/migrations/
 coverage
