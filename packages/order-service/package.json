@@ -11,8 +11,6 @@
     "watch": "tsc --project './tsconfig.json' --watch"
   },
   "dependencies": {
-    "@cc-amqp-exp/prisma": "1.0.0",
-    "@cc-amqp-exp/shared": "1.0.0",
     "amqplib": "^0.10.5",
     "axios": "^1.7.9",
     "cors": "^2.8.5",

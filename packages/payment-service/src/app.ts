@@ -4,12 +4,57 @@ import cors from "cors";
 import config from "./config";
 import { errorHandler } from "./middleware/errorHandler";
 import logger from "./middleware/logger";
-import prisma from "@cc-amqp-exp/prisma";
-import { PaymentProcessedResponse, QueueMessage } from "@cc-amqp-exp/shared";
 import axios from "axios";
 import amqplib, { Channel, Connection } from "amqplib";
 import promClient, { Gauge } from "prom-client";
 import os from "os";
+
+import { PrismaClient } from "@prisma/client";
+
+// Create a singleton PrismaClient instance
+const prisma = new PrismaClient();
+export type CheckInventoryResponse = {
+  orderId: string;
+  isAvailable: boolean;
+};
+
+export type CreateTrackerResponse = {
+  trackerId: string;
+  status: OrderStatus;
+};
+
+export type PaymentProcessedResponse = {
+  orderId: string;
+  status: PaymentStatus;
+};
+
+export type MessageTypes =
+  | "order.created"
+  | "inventory.checked"
+  | "payment.processed";
+
+export type OrderCreatedMessage = {
+  orderId: string;
+  productIds: string[];
+};
+export type InventoryCheckedMessage = {
+  orderId: string;
+  isAvailable: boolean;
+};
+
+export type PaymentProcessedMessage = {
+  orderId: string;
+  status: PaymentStatus;
+};
+
+export type QueueMessage =
+  | { message: "order.created"; data: OrderCreatedMessage }
+  | { message: "inventory.checked"; data: InventoryCheckedMessage }
+  | { message: "payment.processed"; data: PaymentProcessedMessage };
+
+export type PaymentStatus = "success" | "failed";
+
+export type OrderStatus = "created" | "paid" | "canceled";
 
 // prometheus metrics
 const register = new promClient.Registry();
